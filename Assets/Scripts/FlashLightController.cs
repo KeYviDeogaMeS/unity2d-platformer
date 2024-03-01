@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LightController : MonoBehaviour
 {
-    public float rotationSpeed = 5f;
+    public float rotationSpeed = 8f;
 
     void Update()
     {
