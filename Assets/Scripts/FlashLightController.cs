@@ -10,6 +10,7 @@ public class LightController : MonoBehaviour
     {
         Vector3 mousePosition = Input.mousePosition;
         Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
+        mousePosition.z = 0f;
 
         Vector2 direction = (mouseWorldPosition - transform.position).normalized;
 
