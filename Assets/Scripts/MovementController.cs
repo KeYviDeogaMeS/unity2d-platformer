@@ -4,45 +4,40 @@ using UnityEngine;
 
 public class MovementController : MonoBehaviour
 {
-    public float maxSpeed = 9.0f;
-    public float jumpPower = 15.0f;
+    [SerializeField, Range(0, 100f)] private float maxMoveSpeed = 4.0f;
+    [SerializeField, Range(0, 100f)] private float maxJumpHeight = 4.0f;
 
-    Rigidbody2D rb2D = null;
+    private Rigidbody2D body = null;
+    private CollisionCheck collisionCheck;
 
-    private float deltaX = 0.0f;
+    private float horizontalDirection;
     private bool jump;
-    private bool isGrounded = false;
     private void Awake()
     {
-        rb2D = GetComponent<Rigidbody2D>();
+        body = GetComponent<Rigidbody2D>();
+        collisionCheck = GetComponent<CollisionCheck>();
     }
     void Update()
     {
-        deltaX = Input.GetAxis("Horizontal");
+        horizontalDirection = Input.GetAxisRaw("Horizontal");
 
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (Input.GetButtonDown("Jump") && collisionCheck.OnGround)
         {
             jump = true;
         }
     }
     private void FixedUpdate()
     {
+        Vector2 velocity = body.velocity;
+
         if (jump)
         {
-            rb2D.AddForce(new Vector2(0, jumpPower), ForceMode2D.Impulse);
-            jump = false;
+            velocity.y = Mathf.Sqrt(2 * maxJumpHeight * Mathf.Abs(Physics2D.gravity.y) * body.gravityScale);
         }
 
-        Vector2 velocity = new Vector2(deltaX * maxSpeed * Time.deltaTime, rb2D.velocity.y);
+        velocity.x = horizontalDirection * maxMoveSpeed;
 
-        rb2D.velocity = velocity;
-    }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        isGrounded = true;
-    }
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        isGrounded = false;
+        body.velocity = velocity;
+        jump = false;
     }
 }
