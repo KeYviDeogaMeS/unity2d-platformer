@@ -159,7 +159,7 @@ MonoBehaviour:
   maxMoveSpeed: 4
   maxJumpHeight: 4
   minJumpHeight: 1
-  jumpBufferingTime: 0.25
+  jumpBufferingTime: 0.15
 --- !u!50 &281175262
 Rigidbody2D:
   serializedVersion: 4
