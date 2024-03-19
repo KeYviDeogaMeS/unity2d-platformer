@@ -134,9 +134,10 @@ GameObject:
   - component: {fileID: 281175264}
   - component: {fileID: 281175263}
   - component: {fileID: 281175262}
-  - component: {fileID: 281175260}
-  - component: {fileID: 281175266}
   - component: {fileID: 281175267}
+  - component: {fileID: 281175266}
+  - component: {fileID: 281175260}
+  - component: {fileID: 281175268}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -157,9 +158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxMoveSpeed: 4
-  maxJumpHeight: 4
-  minJumpHeight: 1
-  jumpBufferingTime: 0.25
+  wallSlideSpeed: 2
 --- !u!50 &281175262
 Rigidbody2D:
   serializedVersion: 4
@@ -303,6 +302,22 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0.005}
   serializedVersion: 2
   m_Radius: 0.49
+--- !u!114 &281175268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 281175259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 008c25e7f5871a74ea82d607022858f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxJumpHeight: 4
+  minJumpHeight: 1
+  coyoteTime: 0.2
+  jumpBufferTime: 0.2
 --- !u!1 &392745782
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,7 +413,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8d19cf6df4bd1f4dab752770a93c1e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 1
+  rotationSpeed: 0.1
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
